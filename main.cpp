@@ -6,15 +6,13 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(512, 512), "Catch It!");
+    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Catch It!");
+
     sf::RectangleShape player(sf::Vector2f(100.0f, 100.0f));
     //player.setFillColor(sf::Color::Red);
     player.setOrigin(50.0f, 50.0f);
-    player.setPosition(206.0f, 206.0f);
+    player.setPosition(500.0f, 500.0f);
     
-    sf::Texture playerTexture;
-    playerTexture.loadFromFile("Tux.png");
-    player.setTexture(&playerTexture);
 
     while (window.isOpen())
     {
@@ -28,19 +26,13 @@ int main()
                 window.close();
                 break;
 
-                case sf::Event::Resized:
-                std::cout << "New window width: " << event.size.width << ", New window height:  " << event.size.height << std::endl;
-                break;
-
                 case sf::Event::TextEntered:
                 if(event.text.unicode < 128) printf("%c", event.text.unicode);
-                
+                break;
 
-                // chiude per ogni tasto premuto
-                /* case sf::Event::KeyPressed:
-                if(event.key.scancode() == sf::Keyboard::Scan::Escape){
-                    window.close();
-                } */
+                case sf::Event::KeyPressed:
+                if(event.key.code == sf::Keyboard::Escape) window.close();
+                
                 
 
                 default:
@@ -48,16 +40,10 @@ int main()
             }
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) player.move(-0.1f, 0.0f);
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) player.move(0.1f, 0.0f);
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.move(0.0, -0.1f);
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.move(0.0f, 0.1f);
-
-        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            player.setPosition((float)mousePos.x, static_cast<float>(mousePos.y));
-        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) player.move(-3.0f, 0.0f);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) player.move(3.0f, 0.0f);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.move(0.0, -3.0f);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.move(0.0f, 3.0f);
 
         
 
