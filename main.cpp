@@ -4,14 +4,17 @@
 #include <iostream>
 
 
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "Catch It!");
+    sf::RenderWindow window(sf::VideoMode(800, 800), "Catch It!");
 
-    sf::RectangleShape player(sf::Vector2f(100.0f, 100.0f));
-    //player.setFillColor(sf::Color::Red);
-    player.setOrigin(50.0f, 50.0f);
-    player.setPosition(500.0f, 500.0f);
+    sf::RectangleShape player1(sf::Vector2f(100.0f, 100.0f));
+    player1.setPosition(500.0f, 500.0f);
+
+    sf::RectangleShape wall(sf::Vector2f(100.0f, 100.0f));
+    wall.setOrigin(50.0f, 50.0f);
+    wall.setPosition(200.0f, 200.0f);
     
 
     while (window.isOpen())
@@ -40,15 +43,16 @@ int main()
             }
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) player.move(-3.0f, 0.0f);
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) player.move(3.0f, 0.0f);
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player.move(0.0, -3.0f);
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player.move(0.0f, 3.0f);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) player1.move(-3.0f, 0.0f);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) player1.move(3.0f, 0.0f);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) player1.move(0.0, -3.0f);
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) player1.move(0.0f, 3.0f);
 
         
 
         window.clear();
-        window.draw(player);
+        window.draw(player1);
+        window.draw(wall);
         window.display();
     }
 
