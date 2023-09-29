@@ -1,5 +1,5 @@
 // g++ main.cpp -o sfml-app -lsfml-graphics -lsfml-window -lsfml-system
-
+// test
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
