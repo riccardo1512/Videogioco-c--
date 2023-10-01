@@ -10,5 +10,5 @@ class Player {
         sf::RectangleShape* shape;
 
         Player();
-        void movement();
+        void movement(sf::RenderWindow* rw);
 };

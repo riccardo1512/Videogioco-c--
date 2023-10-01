@@ -10,8 +10,38 @@ Player::Player() {
     this->shape->setPosition(100.0f, 100.0f);
 }
 
-void Player::movement() {
+void Player::movement(sf::RenderWindow* rw) {
 
+    // WINDOW COLLISIONS
+
+    sf::Vector2f pos = this->shape->getPosition();
+    sf::Vector2u windowSize = rw->getSize();
+
+    //left border
+    if(pos.x <= 0) {
+
+        this->shape->move(-pos.x, 0);
+
+        //right border
+    } else if(pos.x + this->shape->getSize().x >= windowSize.x) {
+
+        this->shape->move(- (pos.x + this->shape->getSize().x - windowSize.x), 0);
+    }
+
+    //top border
+    if(pos.y <= 0) {
+
+        this->shape->move(0, -pos.y);
+
+        //bottom border
+    } else if(pos.y + this->shape->getSize().y >= windowSize.y) {
+
+        this->shape->move(0, - (pos.y + this->shape->getSize().y - windowSize.y));
+    }
+
+
+    // KEY MOVEMENT
+    
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 
         this->shape->move(-this->speed, 0);

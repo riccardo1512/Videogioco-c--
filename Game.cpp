@@ -44,7 +44,7 @@ void Game::updatePlayers() {
 
         ptr = &PlayerList[i];
 
-        ptr->movement();
+        ptr->movement(this->window);
     }
 }
 
