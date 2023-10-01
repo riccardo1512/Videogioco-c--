@@ -31,4 +31,5 @@ class Game {
     void render();
     void addPlayer(Player p);
     void drawPlayers();
+    void updatePlayers();
 };

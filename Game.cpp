@@ -16,6 +16,7 @@ void Game::initWindow() {
     this->videoMode.width = 800;
     //this->videoMode.getDesktopMode
     this->window = new sf::RenderWindow(this->videoMode, "Catch It!");
+    this->window->setFramerateLimit(60);
 }
 
 void Game::addPlayer(Player p) {
@@ -32,6 +33,18 @@ void Game::drawPlayers() {
         ptr = &PlayerList[i];
 
         this->window->draw(*ptr->shape);
+    }
+}
+
+void Game::updatePlayers() {
+
+    Player* ptr;
+
+    for(int i = 0; i < this->PlayerList.size(); i++) {
+
+        ptr = &PlayerList[i];
+
+        ptr->movement();
     }
 }
 
@@ -85,10 +98,14 @@ void Game::pollEvent() {
 void Game::update() {
 
     this->pollEvent();
+    this->updatePlayers();
+
+    
 }
 void Game::render() {
 
-    this->window->clear(sf::Color(255, 0, 0, 255));
+    //this->window->clear(sf::Color(255, 0, 0, 255));
+    this->window->clear();
 
     //Draw game objects
     this->drawPlayers();
