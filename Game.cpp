@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "Player.h"
+#include "Map.h"
 
 #pragma once
 
@@ -17,6 +18,11 @@ void Game::initWindow() {
     //this->videoMode.getDesktopMode
     this->window = new sf::RenderWindow(this->videoMode, "Catch It!");
     this->window->setFramerateLimit(60);
+}
+
+void::Game::initMap() {
+
+    this->map = new Map();
 }
 
 void Game::addPlayer(Player p) {
@@ -48,10 +54,23 @@ void Game::updatePlayers() {
     }
 }
 
+void Game::drawMap() {
+
+    Map* ptr = this->map;
+
+    for(int i = 0; i < ptr->returnWalls().size(); i++) {
+
+        this->window->draw(ptr->returnWalls()[i]);
+    }
+
+
+}
+
 Game::Game() {
 
     this->initVariables();
     this->initWindow();
+    this->initMap();
 }
 
 Game::~Game() {
@@ -110,6 +129,10 @@ void Game::render() {
     //Draw game objects
     this->drawPlayers();
 
+    this->drawMap();
+
 
     this->window->display();
 }
+
+

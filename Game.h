@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Player.h"
+#include "Map.h"
 
 #pragma once
 
@@ -13,8 +14,11 @@ class Game {
 
     std::vector<Player> PlayerList;
 
+    Map* map;
+
     void initVariables();
     void initWindow();
+    void initMap();
     
     
 
@@ -32,4 +36,6 @@ class Game {
     void addPlayer(Player p);
     void drawPlayers();
     void updatePlayers();
+
+    void drawMap();
 };
